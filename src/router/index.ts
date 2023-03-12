@@ -22,6 +22,13 @@ const router = createRouter({
       path: '/complete',
       name: 'complete',
       component: () => import('../views/CompleteView.vue')
+    },
+    {
+      path: '/:path(.*)',
+      name: 'not-found',
+      beforeEnter: () => {
+        window.location.href = 'https://trap.jp/not-found/'
+      }
     }
   ]
 })
