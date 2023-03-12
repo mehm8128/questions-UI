@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import axios from 'axios'
 
 export interface Question {
   id: string
@@ -14,10 +15,18 @@ const questions = ref<Question[]>([])
 
 const questionText = ref('')
 
-const handleSubmitQuestion = (e: Event) => {
+const handleSubmitQuestion = async (e: Event) => {
   e.preventDefault()
   console.log(questionText.value)
+  await axios.post('http://localhost:3000/api/question', {
+    question: questionText.value
+  })
 }
+
+onMounted(async () => {
+  const res = await axios.get('http://localhost:3000/api/question')
+  questions.value = res.data
+})
 </script>
 
 <template>
