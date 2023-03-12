@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
 import axios from 'axios'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 export interface Question {
   id: string
@@ -13,19 +13,24 @@ export interface Question {
 }
 
 const route = useRoute()
+const router = useRouter()
 
 const currentPage = ref(route.query.page ? Number(route.query.page) : 1)
 
 const questions = ref<Question[]>([])
 
 const questionText = ref('')
+const isSending = ref(false)
 
 const handleSubmitQuestion = async (e: Event) => {
   e.preventDefault()
   console.log(questionText.value)
+  isSending.value = true
   await axios.post('http://localhost:3000/api/question', {
     question: questionText.value
   })
+  isSending.value = false
+  router.push('/complete')
 }
 
 onMounted(async () => {
@@ -51,7 +56,7 @@ watch(
       placeholder="例：部員は何人くらいいますか？、初心者でも大丈夫ですか？"
       id="question"
     />
-    <button type="submit">送信</button>
+    <button type="submit" :disabled="isSending">送信</button>
   </form>
 
   <h2>最近の質問</h2>

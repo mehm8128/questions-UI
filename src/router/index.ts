@@ -17,6 +17,11 @@ const router = createRouter({
       path: '/answer/:id',
       name: 'answer',
       component: () => import('../views/AnswerView.vue')
+    },
+    {
+      path: '/complete',
+      name: 'complete',
+      component: () => import('../views/CompleteView.vue')
     }
   ]
 })

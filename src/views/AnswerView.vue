@@ -9,14 +9,19 @@ const route = useRoute()
 const questionId = route.params.id as string
 
 const question = ref<Question>()
+
 const answerText = ref('')
+const isSending = ref(false)
 
 const handleSubmitAnswer = async (e: Event) => {
   e.preventDefault()
   console.log(answerText.value)
+  isSending.value = true
   await axios.post(`http://localhost:3000/api/question/${questionId}/answer`, {
     answer: answerText.value
   })
+  isSending.value = false
+  alert('回答が送信されました！')
 }
 
 onMounted(async () => {
@@ -40,6 +45,6 @@ onMounted(async () => {
       placeholder="例：部員は400人くらいいます！初心者も大歓迎です。"
       id="answer"
     />
-    <button type="submit">回答を送信</button>
+    <button type="submit" :disabled="isSending">回答を送信</button>
   </form>
 </template>
