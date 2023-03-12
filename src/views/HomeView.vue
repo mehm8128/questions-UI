@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import axios from 'axios'
+import { useRoute } from 'vue-router'
 
 export interface Question {
   id: string
@@ -10,6 +11,10 @@ export interface Question {
   createdAt: string
   updatedAt: string
 }
+
+const route = useRoute()
+
+const currentPage = ref(route.query.page ? Number(route.query.page) : 1)
 
 const questions = ref<Question[]>([])
 
@@ -24,9 +29,15 @@ const handleSubmitQuestion = async (e: Event) => {
 }
 
 onMounted(async () => {
-  const res = await axios.get('http://localhost:3000/api/question')
+  const res = await axios.get(`http://localhost:3000/api/question?offset=${currentPage.value - 1}`)
   questions.value = res.data
 })
+watch(
+  () => route.query.page,
+  (newPage) => {
+    currentPage.value = Number(newPage)
+  }
+)
 </script>
 
 <template>
@@ -53,4 +64,9 @@ onMounted(async () => {
       </RouterLink>
     </li>
   </ul>
+  <div>
+    <RouterLink :to="`/?page=${currentPage - 1}`" v-show="currentPage !== 1">前へ</RouterLink>
+    <p>{{ currentPage }}</p>
+    <RouterLink :to="`/?page=${currentPage + 1}`">次へ</RouterLink>
+  </div>
 </template>
