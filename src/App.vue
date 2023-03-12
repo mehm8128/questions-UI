@@ -1,7 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import QuestionsHeader from './components/QuestionsHeader.vue'
+</script>
 
 <template>
-  <header></header>
+  <QuestionsHeader />
   <main>
     <RouterView />
   </main>
