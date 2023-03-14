@@ -17,9 +17,24 @@ onMounted(async () => {
 </script>
 
 <template>
-  <h2>質問</h2>
-  <p>{{ question?.question }}</p>
-  <p>{{ question?.answer }}</p>
-  <!--traPerのみ表示-->
-  <RouterLink :to="`/answer/${question?.id}`">回答する</RouterLink>
+  <div class="pt-12 mx-auto w-1/2">
+    <h2 class="text-4xl text-center mb-8">質問の詳細</h2>
+    <section>
+      <h3 class="mb-2 text-2xl">質問文</h3>
+      <p class="border border-gray-400 h-28 p-1 mb-2">{{ question?.question }}</p>
+    </section>
+    <section>
+      <h3 class="mb-2 text-2xl">回答</h3>
+      <p v-if="question?.answer" class="border border-gray-400 h-28 p-1 mb-2">
+        {{ question?.answer }}
+        <span>回答者：{{ question?.answerer }}</span>
+      </p>
+      <p v-else>まだ回答がありません</p>
+    </section>
+
+    <div class="text-right">
+      <!--traPerのみ表示-->
+      <RouterLink :to="`/answer/${question?.id}`">回答する></RouterLink>
+    </div>
+  </div>
 </template>
