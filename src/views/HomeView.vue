@@ -99,7 +99,7 @@ watch(
             </p>
           </details>
           <div class="text-right">
-            <RouterLink :to="`/questions/${question.id}`">回答へ></RouterLink>
+            <RouterLink :to="`/questions/${question.id}`">回答へ＞</RouterLink>
           </div>
         </li>
       </ul>

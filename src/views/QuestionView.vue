@@ -34,7 +34,7 @@ onMounted(async () => {
 
     <div class="text-right">
       <!--traPerのみ表示-->
-      <RouterLink :to="`/answer/${question?.id}`">回答する></RouterLink>
+      <RouterLink :to="`/answer/${question?.id}`">回答する＞</RouterLink>
     </div>
   </div>
 </template>
