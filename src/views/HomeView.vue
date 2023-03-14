@@ -65,13 +65,13 @@ watch(
           class="border border-gray-300 w-full min-h-32 p-1"
           v-model="questionText"
           placeholder="例：部員は何人くらいいますか？、初心者でも大丈夫ですか？"
-          id="question"
         />
         <div class="text-right mt-2">
           <button
             type="submit"
             :disabled="isSending"
-            class="bg-blue-300 text-white px-4 py-2 rounded-2xl"
+            class="bg-blue-300 text-white px-8 py-2 rounded-2xl"
+            :class="isSending ? 'opacity-50' : 'opacity-100'"
           >
             送信
           </button>
