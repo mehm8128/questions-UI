@@ -70,10 +70,10 @@ watch(
           <button
             type="submit"
             :disabled="isSending"
-            class="bg-blue-300 text-white px-8 py-2 rounded-2xl"
+            class="bg-blue-500 text-white px-8 py-2 rounded-2xl"
             :class="isSending ? 'opacity-50' : 'opacity-100'"
           >
-            送信
+            質問を投稿
           </button>
         </div>
       </form>
@@ -88,7 +88,7 @@ watch(
           class="w-full min-h-40 border border-gray-300 p-3"
         >
           <p class="border border-gray-400 h-28 p-1 mb-2">{{ question.question }}</p>
-          <details class="mx-4">
+          <details>
             <summary>回答を表示</summary>
             <p>{{ question.answer }}</p>
             <p class="text-right">
