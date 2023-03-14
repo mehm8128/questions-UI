@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -32,5 +33,10 @@ const router = createRouter({
     }
   ]
 })
+
+// router.beforeEach(async (to, from, next) => {
+//   document.location = 'http://localhost:3000/api/oauth2/authorize'
+//   next()
+// })
 
 export default router
