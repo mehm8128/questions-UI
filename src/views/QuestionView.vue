@@ -25,16 +25,20 @@ onMounted(async () => {
     </section>
     <section>
       <h3 class="mb-2 text-2xl">回答</h3>
-      <p v-if="question?.answer" class="border border-gray-400 h-28 p-1 mb-2">
-        {{ question?.answer }}
-        <span>回答者：{{ question?.answerer }}</span>
-      </p>
+      <div v-if="question?.answer">
+        <p class="border border-gray-400 h-28 p-1 mb-2">
+          {{ question?.answer }}
+        </p>
+        <p class="text-right">回答者：{{ question?.answerer }}</p>
+      </div>
       <p v-else>まだ回答がありません</p>
     </section>
 
-    <div class="text-right">
+    <div class="text-right mr-4 mt-4">
       <!--traPerのみ表示-->
-      <RouterLink :to="`/answer/${question?.id}`">回答する＞</RouterLink>
+      <RouterLink :to="`/answer/${question?.id}`">
+        {{ question?.answer ? '回答を修正する' : '回答する' }}＞
+      </RouterLink>
     </div>
   </div>
 </template>

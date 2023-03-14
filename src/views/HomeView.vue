@@ -81,7 +81,7 @@ watch(
 
     <section class="mt-8">
       <h2 class="text-2xl mb-2">最近の質問</h2>
-      <ul>
+      <ul class="space-y-8">
         <li
           v-for="question in questions"
           :key="question.id"
@@ -98,14 +98,14 @@ watch(
               </a>
             </p>
           </details>
-          <div class="text-right">
+          <div class="text-right mt-4">
             <RouterLink :to="`/questions/${question.id}`">回答へ＞</RouterLink>
           </div>
         </li>
       </ul>
     </section>
 
-    <div class="flex items-center justify-center gap-4 mt-4">
+    <div class="flex items-center justify-center gap-4 mt-4 pb-12">
       <RouterLink :to="`/?page=${currentPage - 1}`" v-show="currentPage !== 1">前へ</RouterLink>
       <p>{{ currentPage }}</p>
       <RouterLink :to="`/?page=${currentPage + 1}`">次へ</RouterLink>

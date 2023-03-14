@@ -41,14 +41,20 @@ onMounted(async () => {
     <section>
       <h3 class="mb-2 text-2xl">質問文</h3>
       <p class="border border-gray-400 h-28 p-1 mb-2">{{ question?.question }}</p>
-      <p v-if="question?.answer">
-        {{ question?.answer }}
-        <span>回答者：{{ question?.answerer }}</span>
-      </p>
+    </section>
+    <section>
+      <h3 class="mb-2 text-2xl">回答</h3>
+      <div v-if="question?.answer">
+        <p class="border border-gray-400 h-28 p-1 mb-2">
+          {{ question?.answer }}
+        </p>
+        <p class="text-right">回答者：{{ question?.answerer }}</p>
+      </div>
+      <p v-else>まだ回答がありません</p>
     </section>
 
     <section class="mt-8">
-      <h3 class="mb-2 text-2xl">回答する</h3>
+      <h3 class="mb-2 text-2xl">{{ question?.answer ? '回答を修正する' : '回答する' }}</h3>
       <form :onSubmit="handleSubmitAnswer">
         <textarea
           class="border border-gray-300 w-full min-h-32 p-1"
@@ -60,7 +66,7 @@ onMounted(async () => {
           <input type="checkbox" v-model="isAnonymous" />
           匿名で回答する(チェックを外した場合、回答と一緒にtraP IDが表示されます)
         </label>
-        <div class="text-right mt-2">
+        <div class="text-right mt-2 pb-12">
           <button
             type="submit"
             :disabled="isSending"
