@@ -26,10 +26,8 @@ const router = createRouter({
     },
     {
       path: '/:path(.*)',
-      name: 'not-found',
-      beforeEnter: () => {
-        window.location.href = 'https://trap.jp/not-found/'
-      }
+      name: 'notFound',
+      component: () => import('../views/NotFoundView.vue')
     }
   ]
 })
