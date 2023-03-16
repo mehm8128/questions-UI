@@ -42,6 +42,12 @@ const handleSubmitQuestion = async (e: Event) => {
   router.push('/complete')
 }
 
+const handleRouterPush = (questionId: string) => {
+  document.startViewTransition(() => {
+    router.push(`/questions/${questionId}`)
+  })
+}
+
 onMounted(async () => {
   const res = await axios.get(`http://localhost:3000/api/question?offset=${currentPage.value - 1}`)
   questions.value = res.data
@@ -87,7 +93,7 @@ watch(
           :key="question.id"
           class="w-full min-h-40 border border-gray-300 p-3"
         >
-          <p class="border border-gray-400 h-28 p-1 mb-2">{{ question.question }}</p>
+          <p class="border border-gray-400 h-28 p-1 mb-2 question">{{ question.question }}</p>
           <details>
             <summary>回答を表示</summary>
             <p>{{ question.answer }}</p>
@@ -99,7 +105,7 @@ watch(
             </p>
           </details>
           <div class="text-right mt-4">
-            <RouterLink :to="`/questions/${question.id}`">回答へ＞</RouterLink>
+            <button @click="handleRouterPush(question.id)">回答へ＞</button>
           </div>
         </li>
       </ul>
@@ -112,3 +118,10 @@ watch(
     </div>
   </div>
 </template>
+
+<style scoped>
+.question {
+  view-transition-name: question;
+  contain: paint;
+}
+</style>
