@@ -17,16 +17,7 @@ const router = useRouter()
 
 const currentPage = ref(route.query.page ? Number(route.query.page) : 1)
 
-const questions = ref<Question[]>([
-  {
-    id: 'aaa',
-    question: 'traPaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-    answer: 'traPpppppppppppppppppppppppppppppppppppppp',
-    answerer: 'mehm8128',
-    createdAt: '2023-03-03T00:00:00.000Z',
-    updatedAt: '2023-03-03T00:00:00.000Z'
-  }
-])
+const questions = ref<Question[]>([])
 
 const questionText = ref('')
 const isSending = ref(false)
