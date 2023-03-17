@@ -1,5 +1,4 @@
 type: runtime
-image: runtime/node
 
 startup: npm i && npm run build
 entrypoint: npm run preview
