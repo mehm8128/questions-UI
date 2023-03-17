@@ -33,12 +33,6 @@ const handleSubmitQuestion = async (e: Event) => {
   router.push('/complete')
 }
 
-const handleRouterPush = (questionId: string) => {
-  document.startViewTransition(() => {
-    router.push(`http://questions.ikura-hamu.trap.show/api/questions/${questionId}`)
-  })
-}
-
 onMounted(async () => {
   const res = await axios.get(
     `http://questions.ikura-hamu.trap.show/api/question?offset=${currentPage.value - 1}&limit=10`
@@ -86,7 +80,7 @@ watch(
           :key="question.id"
           class="w-full min-h-40 border border-gray-300 p-3"
         >
-          <p class="border border-gray-400 h-28 p-1 mb-2 question">{{ question.question }}</p>
+          <p class="border border-gray-400 h-28 p-1 mb-2">{{ question.question }}</p>
           <details>
             <summary>回答を表示</summary>
             <p>{{ question.answer }}</p>
@@ -98,7 +92,7 @@ watch(
             </p>
           </details>
           <div class="text-right mt-4">
-            <button @click="handleRouterPush(question.id)">回答へ＞</button>
+            <RouterLink :to="`/questions/${question.id}`">回答へ＞</RouterLink>
           </div>
         </li>
       </ul>
@@ -111,10 +105,3 @@ watch(
     </div>
   </div>
 </template>
-
-<style scoped>
-.question {
-  view-transition-name: question;
-  contain: paint;
-}
-</style>

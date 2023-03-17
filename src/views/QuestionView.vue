@@ -21,7 +21,7 @@ onMounted(async () => {
     <h2 class="text-4xl text-center mb-8">質問の詳細</h2>
     <section>
       <h3 class="mb-2 text-2xl">質問文</h3>
-      <p class="border border-gray-400 h-28 p-1 mb-2 question">{{ question?.question }}</p>
+      <p class="border border-gray-400 h-28 p-1 mb-2">{{ question?.question }}</p>
     </section>
     <section>
       <h3 class="mb-2 text-2xl">回答</h3>
@@ -42,10 +42,3 @@ onMounted(async () => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.question {
-  view-transition-name: question;
-  contain: paint;
-}
-</style>

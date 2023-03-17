@@ -1,6 +1,6 @@
 type: static
 
-startup: npm i && npm run build-only
+startup: npm i && npm run build
 work_dir: dist
 http_proxy: 5173
 
