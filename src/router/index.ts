@@ -15,14 +15,19 @@ const router = createRouter({
       component: () => import('../views/QuestionView.vue')
     },
     {
-      path: '/answer/:id',
-      name: 'answer',
-      component: () => import('../views/AnswerView.vue')
-    },
-    {
       path: '/complete',
       name: 'complete',
       component: () => import('../views/CompleteView.vue')
+    },
+    {
+      path: '/admin',
+      name: 'adminHome',
+      component: () => import('../views/AdminHomeView.vue')
+    },
+    {
+      path: '/admin/answer/:id',
+      name: 'adminAnswer',
+      component: () => import('../views/AdminAnswerView.vue')
     },
     {
       path: '/:path(.*)',
@@ -33,7 +38,17 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  document.location = 'http://questions.ikura-hamu.trap.show/api/oauth2/authorize'
+  if (to.name !== 'adminHome' && to.name !== 'adminAnswer') {
+    next()
+    return
+  }
+  try {
+    await axios.get(`http://questions.ikura-hamu.trap.show/api/me`)
+  } catch {
+    document.location = 'http://questions.ikura-hamu.trap.show/api/oauth2/authorize'
+    next()
+    return
+  }
   next()
 })
 
