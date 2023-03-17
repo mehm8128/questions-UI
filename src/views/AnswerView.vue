@@ -18,7 +18,7 @@ const handleSubmitAnswer = async (e: Event) => {
   e.preventDefault()
   console.log(answerText.value)
   isSending.value = true
-  await axios.post(`http://localhost:3000/api/question/${questionId}/answer`, {
+  await axios.post(`/api/question/${questionId}/answer`, {
     answer: answerText.value
   })
   isSending.value = false
@@ -26,7 +26,7 @@ const handleSubmitAnswer = async (e: Event) => {
 }
 
 onMounted(async () => {
-  const res = await axios.get(`http://localhost:3000/api/question/${questionId}`)
+  const res = await axios.get(`/api/question/${questionId}`)
   question.value = res.data
 })
 </script>

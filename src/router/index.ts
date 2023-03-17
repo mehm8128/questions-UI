@@ -32,9 +32,9 @@ const router = createRouter({
   ]
 })
 
-// router.beforeEach(async (to, from, next) => {
-//   document.location = 'http://localhost:3000/api/oauth2/authorize'
-//   next()
-// })
+router.beforeEach(async (to, from, next) => {
+  document.location = 'http://questions.ikura-hamu.trap.show/api/oauth2/authorize'
+  next()
+})
 
 export default router

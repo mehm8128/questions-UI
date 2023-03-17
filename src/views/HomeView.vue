@@ -35,7 +35,7 @@ const handleSubmitQuestion = async (e: Event) => {
   e.preventDefault()
   console.log(questionText.value)
   isSending.value = true
-  await axios.post('http://localhost:3000/api/question', {
+  await axios.post('/api/question', {
     question: questionText.value
   })
   isSending.value = false
@@ -49,7 +49,7 @@ const handleRouterPush = (questionId: string) => {
 }
 
 onMounted(async () => {
-  const res = await axios.get(`http://localhost:3000/api/question?offset=${currentPage.value - 1}`)
+  const res = await axios.get(`/api/question?offset=${currentPage.value - 1}&limit=10`)
   questions.value = res.data
 })
 watch(

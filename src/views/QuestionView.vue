@@ -11,7 +11,7 @@ const questionId = route.params.id as string
 const question = ref<Question>()
 
 onMounted(async () => {
-  const res = await axios.get(`http://localhost:3000/api/question/${questionId}`)
+  const res = await axios.get(`/api/question/${questionId}`)
   question.value = res.data
 })
 </script>
