@@ -1,7 +1,0 @@
-type: runtime
-
-startup: npm i && npm run build
-entrypoint: npm run preview
-
-http_proxy: 4173
-https: on
