@@ -35,7 +35,7 @@ const handleSubmitQuestion = async (e: Event) => {
   e.preventDefault()
   console.log(questionText.value)
   isSending.value = true
-  await axios.post('/api/question', {
+  await axios.post('http://questions.ikura-hamu.trap.show/api/question', {
     question: questionText.value
   })
   isSending.value = false
@@ -44,12 +44,14 @@ const handleSubmitQuestion = async (e: Event) => {
 
 const handleRouterPush = (questionId: string) => {
   document.startViewTransition(() => {
-    router.push(`/questions/${questionId}`)
+    router.push(`http://questions.ikura-hamu.trap.show/api/questions/${questionId}`)
   })
 }
 
 onMounted(async () => {
-  const res = await axios.get(`/api/question?offset=${currentPage.value - 1}&limit=10`)
+  const res = await axios.get(
+    `http://questions.ikura-hamu.trap.show/api/question?offset=${currentPage.value - 1}&limit=10`
+  )
   questions.value = res.data
 })
 watch(

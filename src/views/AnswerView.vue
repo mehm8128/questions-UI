@@ -18,7 +18,7 @@ const handleSubmitAnswer = async (e: Event) => {
   e.preventDefault()
   console.log(answerText.value)
   isSending.value = true
-  await axios.post(`/api/question/${questionId}/answer`, {
+  await axios.post(`http://questions.ikura-hamu.trap.show/api/question/${questionId}/answer`, {
     answer: answerText.value
   })
   isSending.value = false
@@ -26,7 +26,7 @@ const handleSubmitAnswer = async (e: Event) => {
 }
 
 onMounted(async () => {
-  const res = await axios.get(`/api/question/${questionId}`)
+  const res = await axios.get(`http://questions.ikura-hamu.trap.show/api/question/${questionId}`)
   question.value = res.data
 })
 </script>
