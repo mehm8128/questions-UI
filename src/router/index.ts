@@ -1,8 +1,8 @@
 import axios from 'axios'
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
@@ -28,12 +28,12 @@ const router = createRouter({
       path: '/admin/answer/:id',
       name: 'adminAnswer',
       component: () => import('../views/AdminAnswerView.vue')
-    },
-    {
-      path: '/:path(.*)',
-      name: 'notFound',
-      component: () => import('../views/NotFoundView.vue')
     }
+    // {
+    //   path: '/:path(.*)',
+    //   name: 'notFound',
+    //   component: () => import('../views/NotFoundView.vue')
+    // }
   ]
 })
 
