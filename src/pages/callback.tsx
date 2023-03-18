@@ -11,7 +11,7 @@ export default function Callback() {
 		;(async () => {
 			try {
 				const res = await axios.get(
-					`https://ikura-hamu.trap.show/questions/api/callback?code=${code}`
+					`https://ikura-hamu.trap.show/questions/api/oauth2/callback?code=${code}`
 				)
 				router.push("/admin")
 			} catch {
