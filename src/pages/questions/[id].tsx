@@ -13,7 +13,7 @@ export default function Question() {
 	useEffect(() => {
 		;(async () => {
 			const res = await axios.get(
-				`http://questions.ikura-hamu.trap.show/api/question/${questionId}`
+				`https://ikura-hamu.trap.show/questions/api/question/${questionId}`
 			)
 			setQuestion(res.data)
 		})()

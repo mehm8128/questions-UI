@@ -15,7 +15,7 @@ export default function Admin() {
 	useEffect(() => {
 		;(async () => {
 			const res = await axios.get(
-				`http://questions.ikura-hamu.trap.show/api/question?offset=${
+				`https://ikura-hamu.trap.show/questions/api/question?offset=${
 					currentPage - 1
 				}&limit=10`
 			)

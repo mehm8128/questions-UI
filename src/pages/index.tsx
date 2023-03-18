@@ -25,7 +25,7 @@ export default function Home() {
 	const handleSubmitQuestion = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		setIsSending(true)
-		await axios.post("http://questions.ikura-hamu.trap.show/api/question", {
+		await axios.post("https://ikura-hamu.trap.show/questions/api/question", {
 			question: questionText,
 		})
 		setIsSending(false)
@@ -35,7 +35,7 @@ export default function Home() {
 	useEffect(() => {
 		;(async () => {
 			const res = await axios.get(
-				`http://questions.ikura-hamu.trap.show/api/question?offset=${
+				`https://ikura-hamu.trap.show/questions/api/question?offset=${
 					currentPage - 1
 				}&limit=10`
 			)

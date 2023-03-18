@@ -24,7 +24,7 @@ export default function AdminAnswer() {
 		e.preventDefault()
 		setIsSending(true)
 		await axios.post(
-			`http://questions.ikura-hamu.trap.show/api/question/${questionId}/answer`,
+			`https://ikura-hamu.trap.show/questions/api/question/${questionId}/answer`,
 			{
 				answer: answerText,
 			}
@@ -36,7 +36,7 @@ export default function AdminAnswer() {
 	useEffect(() => {
 		;(async () => {
 			const res = await axios.get(
-				`http://questions.ikura-hamu.trap.show/api/question/${questionId}`
+				`https://ikura-hamu.trap.show/questions/api/question/${questionId}`
 			)
 			setQuestion(res.data)
 		})()
