@@ -12,7 +12,6 @@ import path from "path"
 export default function App({ Component, pageProps }: AppProps) {
 	const router = useRouter()
 	const path = router.pathname
-	console.log(path)
 
 	useEffect(() => {
 		if (path.startsWith("/admin")) {
@@ -20,7 +19,6 @@ export default function App({ Component, pageProps }: AppProps) {
 				try {
 					await axios.get(`https://ikura-hamu.trap.show/questions/api/me`)
 				} catch {
-					console.log("not logged in")
 					document.location =
 						"https://ikura-hamu.trap.show/questions/api/oauth2/authorize"
 				}
