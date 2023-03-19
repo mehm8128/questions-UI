@@ -17,7 +17,9 @@ export default function App({ Component, pageProps }: AppProps) {
 		if (path.startsWith("/admin")) {
 			;(async () => {
 				try {
-					await axios.get(`https://ikura-hamu.trap.show/questions/api/me`)
+					await axios.get(`https://ikura-hamu.trap.show/questions/api/me`, {
+						withCredentials: true,
+					})
 				} catch {
 					document.location =
 						"https://ikura-hamu.trap.show/questions/api/oauth2/authorize"

@@ -27,6 +27,9 @@ export default function AdminAnswer() {
 			`https://ikura-hamu.trap.show/questions/api/question/${questionId}/answer`,
 			{
 				answer: answerText,
+			},
+			{
+				withCredentials: true,
 			}
 		)
 		setIsSending(false)
