@@ -24,7 +24,7 @@ export default function Question() {
 			<h2 className="text-4xl text-center mb-8">質問の詳細</h2>
 			<section>
 				<h3 className="mb-2 text-2xl">質問文</h3>
-				<p className="border border-gray-400 h-28 p-1 mb-2">
+				<p className="border border-gray-400 h-28 p-1 mb-2 bg-white">
 					{question?.question}
 				</p>
 			</section>
@@ -32,7 +32,7 @@ export default function Question() {
 				<h3 className="mb-2 text-2xl">回答</h3>
 				{question?.answer ? (
 					<div>
-						<p className="border border-gray-400 h-28 p-1 mb-2">
+						<p className="border border-gray-400 h-28 p-1 mb-2 bg-white">
 							{question?.answer}
 						</p>
 						<p className="text-right">回答者：{question?.answerer}</p>
@@ -44,7 +44,7 @@ export default function Question() {
 
 			<div className="text-right mr-4 mt-4">
 				{/** traPerのみ表示 */}
-				<Link href={`/answer/${question?.id}`}>
+				<Link href={`/admin/answer/${question?.id}`}>
 					{question?.answer ? "回答を修正する" : "回答する"}＞
 				</Link>
 			</div>

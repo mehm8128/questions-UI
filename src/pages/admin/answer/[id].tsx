@@ -55,7 +55,7 @@ export default function AdminAnswer() {
 				<h2 className="text-4xl text-center mb-8">回答フォーム</h2>
 				<section>
 					<h3 className="mb-2 text-2xl">質問文</h3>
-					<p className="border border-gray-400 h-28 p-1 mb-2">
+					<p className="border border-gray-400 h-28 p-1 mb-2 bg-white">
 						{question?.question}
 					</p>
 				</section>
@@ -63,7 +63,7 @@ export default function AdminAnswer() {
 					<h3 className="mb-2 text-2xl">回答</h3>
 					{question?.answer ? (
 						<div>
-							<p className="border border-gray-400 h-28 p-1 mb-2">
+							<p className="border border-gray-400 h-28 p-1 mb-2 bg-white">
 								{question?.answer}
 							</p>
 							<p className="text-right">回答者：{question?.answerer}</p>

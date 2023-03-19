@@ -76,9 +76,9 @@ export default function Home() {
 					{questions.map((question) => (
 						<li
 							key={question.id}
-							className="w-full min-h-40 border border-gray-300 p-3"
+							className="w-full min-h-40 border border-gray-300 p-3 bg-white"
 						>
-							<p className="border border-gray-400 h-28 p-1 mb-2">
+							<p className="border border-gray-400 h-28 p-1 mb-2 bg-white">
 								{question.question}
 							</p>
 							<details>
