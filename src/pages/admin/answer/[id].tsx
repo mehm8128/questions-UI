@@ -18,7 +18,6 @@ export default function AdminAnswer() {
 	const [question, setQuestion] = useState<Question>()
 	const [answerText, setAnswerText] = useState("")
 	const [isSending, setIsSending] = useState(false)
-	const [isAnonymous, setIsAnonymous] = useState(false)
 
 	const handleSubmitAnswer = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -85,15 +84,6 @@ export default function AdminAnswer() {
 							placeholder="例：部員は400人くらいいます！初心者も大歓迎です。"
 						/>
 						<p>説明説明説明</p>
-						<label>
-							<input
-								type="checkbox"
-								checked={isAnonymous}
-								onChange={(e) => setIsAnonymous(e.target.checked)}
-							/>
-							匿名で回答する(チェックを外した場合、回答と一緒にtraP
-							IDが表示されます)
-						</label>
 						<div className="text-right mt-2 pb-12">
 							<button
 								type="submit"
