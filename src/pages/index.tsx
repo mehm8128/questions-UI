@@ -19,6 +19,7 @@ export default function Home() {
 		? Number(router.query.page)
 		: 1
 	const [questions, setQuestions] = useState<Question[]>([])
+	const [questionCount, setQuestionCount] = useState(0)
 	const [questionText, setQuestionText] = useState("")
 	const [isSending, setIsSending] = useState(false)
 
@@ -35,11 +36,12 @@ export default function Home() {
 	useEffect(() => {
 		;(async () => {
 			const res = await axios.get(
-				`https://ikura-hamu.trap.show/questions/api/question?offset=${
+				`https://ikura-hamu.trap.show/questions/api/question/answered?offset=${
 					currentPage - 1
 				}&limit=10`
 			)
-			setQuestions(res.data)
+			setQuestions(res.data.questions)
+			setQuestionCount(res.data.count)
 		})()
 	}, [])
 
@@ -100,9 +102,13 @@ export default function Home() {
 			</section>
 
 			<div className="flex items-center justify-center gap-4 mt-4 pb-12">
-				<Link href={`/?page=${currentPage - 1}`}>前へ</Link>
+				{currentPage !== 1 && (
+					<Link href={`/?page=${currentPage - 1}`}>前へ</Link>
+				)}
 				<p>{currentPage}</p>
-				<Link href={`/?page=${currentPage + 1}`}>次へ</Link>
+				{currentPage !== Math.ceil(questionCount / 10) && (
+					<Link href={`/?page=${currentPage + 1}`}>次へ</Link>
+				)}
 			</div>
 		</div>
 	)
