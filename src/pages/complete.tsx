@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export default function Complete() {
 	return (
-		<div className="bg-white pt-12 mt-12 mx-auto w-1/2 flex flex-col items-center rounded-md shadow-lg">
+		<div className="bg-light-50 pt-12 mt-12 mx-auto w-1/2 flex flex-col items-center rounded-md shadow-lg">
 			<h2 className="text-4xl text-center mb-8 font-bold text-gray-800">
 				質問が送信されました！
 			</h2>

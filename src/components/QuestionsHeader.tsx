@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export default function QuestionsHeader() {
 	return (
-		<header className="h-12 shadow px-4 flex items-center bg-white">
+		<header className="h-12 shadow px-4 flex items-center bg-light-50">
 			<h1 className="text-xl">
 				<Link href="/">Questions</Link>
 			</h1>

@@ -11,9 +11,9 @@ export default function Question({
 	return (
 		<li
 			key={question.id}
-			className="rounded-md shadow-sm border border-gray-200"
+			className="rounded-md shadow-sm border border-gray-200 bg-light-50"
 		>
-			<div className="p-6">
+			<div className="px-6 pt-4 pb-6">
 				<p className="text-gray-800 leading-tight">{question.question}</p>
 				{question.answer && (
 					<details className="mt-2">
