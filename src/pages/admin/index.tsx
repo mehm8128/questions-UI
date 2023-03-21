@@ -18,7 +18,10 @@ export default function Admin() {
 			const res = await axios.get(
 				`https://ikura-hamu.trap.show/questions/api/admin/question?offset=${
 					currentPage - 1
-				}&limit=10`
+				}&limit=10`,
+				{
+					withCredentials: true,
+				}
 			)
 			setQuestions(res.data.questions)
 			setQuestionCount(res.data.count)
