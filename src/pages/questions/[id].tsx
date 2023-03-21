@@ -42,7 +42,7 @@ export default function Question() {
 			<h2 className="text-4xl text-center mb-8 font-bold">質問の詳細</h2>
 			<section className="mb-8">
 				<h3 className="mb-4 text-2xl font-bold">質問文</h3>
-				<p className="border border-gray-400 h-28 p-4 mb-4 bg-white text-lg">
+				<p className="border border-gray-400 h-28 p-2 mb-4 bg-white text-lg rounded-md">
 					{question?.question}
 				</p>
 			</section>
@@ -50,7 +50,7 @@ export default function Question() {
 				<h3 className="mb-4 text-2xl font-bold">回答</h3>
 				{question?.answer ? (
 					<div>
-						<p className="border border-gray-400 h-28 p-4 mb-4 bg-white text-lg">
+						<p className="border border-gray-400 h-28 p-2 mb-4 bg-white text-lg rounded-md">
 							{question?.answer}
 						</p>
 						<p className="text-right font-medium">

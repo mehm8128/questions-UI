@@ -20,16 +20,7 @@ export default function Home() {
 	const currentPage = !Number.isNaN(Number(router.query.page))
 		? Number(router.query.page)
 		: 1
-	const [questions, setQuestions] = useState<QuestionType[]>([
-		{
-			id: "aaa",
-			question: "aaa",
-			answer: "aaa",
-			answerer: "aaa",
-			created_at: "aaa",
-			updated_at: "aaa",
-		},
-	])
+	const [questions, setQuestions] = useState<QuestionType[]>([])
 	const [questionCount, setQuestionCount] = useState(0)
 	const [questionText, setQuestionText] = useState("")
 	const [isSending, setIsSending] = useState(false)

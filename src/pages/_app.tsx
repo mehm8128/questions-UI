@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
 	}, [path])
 
 	return (
-		<div className="text-dark-200 bg-[#f7fafc] min-h-screen">
+		<div className="text-dark-200 bg-[#f7fafc] min-h-screen pb-12">
 			<Head>
 				<title>Questions</title>
 			</Head>
