@@ -23,7 +23,7 @@ export default function AdminAnswer() {
 		e.preventDefault()
 		setIsSending(true)
 		await axios.post(
-			`https://ikura-hamu.trap.show/questions/api/question/${questionId}/answer`,
+			`https://ikura-hamu.trap.show/questions/api/admin/question/${questionId}/answer`,
 			{
 				answer: answerText,
 			},

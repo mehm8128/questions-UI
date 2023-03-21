@@ -36,7 +36,7 @@ export default function Home() {
 	useEffect(() => {
 		;(async () => {
 			const res = await axios.get(
-				`https://ikura-hamu.trap.show/questions/api/question/answered?offset=${
+				`https://ikura-hamu.trap.show/questions/api/question?offset=${
 					currentPage - 1
 				}&limit=10`
 			)
