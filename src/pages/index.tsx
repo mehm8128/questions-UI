@@ -46,68 +46,99 @@ export default function Home() {
 	}, [])
 
 	return (
-		<div className="pt-12 mx-auto w-1/2">
-			<h1 className="text-4xl text-center mb-8">Questions</h1>
-			<section>
-				<h2 className="text-2xl">traPに質問してみましょう！</h2>
-				<p>説明説明説明</p>
-				<form onSubmit={handleSubmitQuestion} className="mx-4 mt-4">
-					<textarea
-						className="border border-gray-300 w-full min-h-32 p-1"
-						value={questionText}
-						onChange={(e) => setQuestionText(e.target.value)}
-						placeholder="例：部員は何人くらいいますか？、初心者でも大丈夫ですか？"
-					/>
-					<div className="text-right mt-2">
+		<div className="max-w-screen-lg mx-auto px-4 py-8 sm:px-6 lg:px-8">
+			<h1 className="text-3xl font-bold text-center mb-8">Questions</h1>
+			<section className="mb-8">
+				<h2 className="text-2xl font-semibold mb-2">
+					traPに質問してみましょう！
+				</h2>
+				<p className="text-gray-600">説明説明説明</p>
+				<form onSubmit={handleSubmitQuestion} className="mt-6 space-y-4">
+					<div className="rounded-md shadow-sm">
+						<textarea
+							className="block w-full p-1 min-h-32 transition duration-150 ease-in-out sm:text-sm sm:leading-5 border-gray-300 rounded-md"
+							value={questionText}
+							onChange={(e) => setQuestionText(e.target.value)}
+							placeholder="例：部員は何人くらいいますか？、初心者でも大丈夫ですか？"
+							required
+						/>
+					</div>
+					<div className="text-right">
 						<button
 							type="submit"
 							disabled={isSending}
-							className={`bg-blue-500 text-white px-8 py-2 rounded-2xl ${
-								isSending ? "opacity-50" : "opacity-100"
+							className={`inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out ${
+								isSending && "opacity-50 cursor-not-allowed"
 							}`}
 						>
-							質問を投稿
+							{isSending ? "送信中" : "質問を投稿"}
 						</button>
 					</div>
 				</form>
 			</section>
 
-			<section className="mt-8">
-				<h2 className="text-2xl mb-2">最近の質問</h2>
+			<section className="mb-12">
+				<h2 className="text-2xl font-semibold mb-2">最近の質問</h2>
 				<ul className="space-y-8">
 					{questions.map((question) => (
 						<li
 							key={question.id}
-							className="w-full min-h-40 border border-gray-300 p-6 bg-white rounded-4xl"
+							className="rounded-md shadow-sm border border-gray-200"
 						>
-							<p className="border border-gray-400 h-28 p-1 mb-2 bg-white rounded-md">
-								{question.question}
-							</p>
-							<details>
-								<summary>回答を表示</summary>
-								<p>{question.answer}</p>
-								<p className="text-right">
-									回答者：
-									<a href={`https://trap.jp/author/${question.answerer}/`}>
-										{question.answerer}
-									</a>
+							<div className="p-6">
+								<p className="text-gray-800 leading-tight">
+									{question.question}
 								</p>
-							</details>
-							<div className="text-right mt-4">
-								<Link href={`/questions/${question.id}`}>詳細へ＞</Link>
+								<details className="mt-2">
+									<summary className="font-medium text-gray-600 cursor-pointer">
+										回答を表示
+									</summary>
+									<p className="mt-2 text-gray-700 leading-tight">
+										{question.answer}
+									</p>
+									<p className="mt-2 text-right text-sm text-gray-500">
+										回答者：
+										<a
+											href={`https://trap.jp/author/${question.answerer}/`}
+											className="underline"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											{question.answerer}
+										</a>
+									</p>
+								</details>
+							</div>
+							<div className="px-6 py-4 bg-gray-100 border-t border-gray-200 flex justify-end rounded-b-md">
+								<Link
+									className="text-sm font-medium text-blue-500 hover:text-blue-400 transition duration-150 ease-in-out"
+									href={`/questions/${question.id}`}
+								>
+									詳細へ &rarr;
+								</Link>
 							</div>
 						</li>
 					))}
 				</ul>
 			</section>
 
-			<div className="flex items-center justify-center gap-4 mt-4 pb-12">
+			<div className="flex items-center justify-between mt-4 pb-12">
 				{currentPage !== 1 && (
-					<Link href={`/?page=${currentPage - 1}`}>前へ</Link>
+					<Link
+						href={`/?page=${currentPage - 1}`}
+						className="bg-blue-500 text-white px-8 py-2 rounded-2xl"
+					>
+						前へ
+					</Link>
 				)}
-				<p>{currentPage}</p>
+				<p className="text-lg">{currentPage}</p>
 				{currentPage !== Math.ceil(questionCount / 10) && (
-					<Link href={`/?page=${currentPage + 1}`}>次へ</Link>
+					<Link
+						href={`/?page=${currentPage + 1}`}
+						className="bg-blue-500 text-white px-8 py-2 rounded-2xl"
+					>
+						次へ
+					</Link>
 				)}
 			</div>
 		</div>

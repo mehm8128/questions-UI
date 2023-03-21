@@ -45,59 +45,56 @@ export default function AdminAnswer() {
 	}, [])
 
 	return (
-		<>
-			<div>
-				{/** traPer以外がアクセスした場合 */}
-				権限がありません
-			</div>
-			<div className="pt-12 mx-auto w-1/2">
-				<h2 className="text-4xl text-center mb-8">回答フォーム</h2>
-				<section>
-					<h3 className="mb-2 text-2xl">質問文</h3>
-					<p className="border border-gray-400 h-28 p-1 mb-2 bg-white">
-						{question?.question}
-					</p>
-				</section>
-				<section>
-					<h3 className="mb-2 text-2xl">回答</h3>
-					{question?.answer ? (
-						<div>
-							<p className="border border-gray-400 h-28 p-1 mb-2 bg-white">
-								{question?.answer}
-							</p>
-							<p className="text-right">回答者：{question?.answerer}</p>
-						</div>
-					) : (
-						<p>まだ回答がありません</p>
-					)}
-				</section>
+		<div className="pt-12 mx-auto max-w-screen-md">
+			<h2 className="text-4xl text-center mb-8 font-bold">質問の詳細</h2>
+			<section className="mb-8">
+				<h3 className="mb-4 text-2xl font-bold">質問文</h3>
+				<p className="border border-gray-400 h-28 p-4 mb-4 bg-white text-lg">
+					{question?.question}
+				</p>
+			</section>
+			<section className="mb-8">
+				<h3 className="mb-4 text-2xl font-bold">回答</h3>
+				{question?.answer ? (
+					<div>
+						<p className="border border-gray-400 h-28 p-4 mb-4 bg-white text-lg">
+							{question?.answer}
+						</p>
+						<p className="text-right font-medium">
+							回答者：{question?.answerer}
+						</p>
+					</div>
+				) : (
+					<p className="text-lg font-medium mb-4">まだ回答がありません</p>
+				)}
+			</section>
 
-				<section className="mt-8">
-					<h3 className="mb-2 text-2xl">
-						{question?.answer ? "回答を修正する" : "回答する"}
-					</h3>
-					<form onSubmit={handleSubmitAnswer}>
+			<section className="mt-8">
+				<h3 className="mb-2 text-2xl">
+					{question?.answer ? "回答を修正する" : "回答する"}
+				</h3>
+				<form onSubmit={handleSubmitAnswer}>
+					<div className="rounded-md shadow-sm">
 						<textarea
-							className="border border-gray-300 w-full min-h-32 p-1"
+							className="block w-full min-h-32 transition duration-150 ease-in-out sm:text-sm sm:leading-5 border-gray-300 rounded-md p-1"
 							value={answerText}
 							onChange={(e) => setAnswerText(e.target.value)}
 							placeholder="例：部員は400人くらいいます！初心者も大歓迎です。"
 						/>
-						<p>説明説明説明</p>
-						<div className="text-right mt-2 pb-12">
-							<button
-								type="submit"
-								disabled={isSending}
-								className={`bg-blue-500 text-white px-8 py-2 rounded-2xl ${
-									isSending ? "opacity-50" : "opacity-100"
-								}`}
-							>
-								回答を送信
-							</button>
-						</div>
-					</form>
-				</section>
-			</div>
-		</>
+					</div>
+					<div className="text-right mt-4">
+						<button
+							type="submit"
+							disabled={isSending}
+							className={`inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out ${
+								isSending ? "opacity-50" : "opacity-100"
+							}`}
+						>
+							{isSending ? "送信中" : "回答を投稿"}
+						</button>
+					</div>
+				</form>
+			</section>
+		</div>
 	)
 }
