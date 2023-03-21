@@ -14,7 +14,7 @@ export default function QuestionsHeader() {
 			{user?.name && (
 				<img
 					src={`https://q.trap.jp/api/v3/public/icon/${user.name}`}
-					className="rounded-full"
+					className="rounded-full h-8 w-8"
 					alt={user.name}
 				/>
 			)}
