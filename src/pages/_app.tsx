@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
 	}, [path])
 
 	return (
-		<div className="text-dark-200 bg-[#fafcf5] min-h-screen">
+		<div className="text-dark-200 bg-[#f7fafc] min-h-screen">
 			<QuestionsHeader />
 			<main>
 				<Component {...pageProps} />
