@@ -78,7 +78,7 @@ export default function Admin() {
 				<Link
 					href={`/admin?page=${currentPage - 1}`}
 					className={`bg-blue-500 text-white px-8 py-2 rounded-2xl ${
-						currentPage !== 1 && "hidden"
+						currentPage === 1 && "hidden"
 					}`}
 				>
 					前へ
@@ -88,7 +88,7 @@ export default function Admin() {
 					<Link
 						href={`/admin?page=${currentPage + 1}`}
 						className={`bg-blue-500 text-white px-8 py-2 rounded-2xl ${
-							currentPage !== Math.ceil(questionCount / 10) && "hidden"
+							currentPage === Math.ceil(questionCount / 10) && "hidden"
 						}`}
 					>
 						次へ
