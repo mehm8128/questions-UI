@@ -40,11 +40,7 @@ export default function Question({
 			<div className="px-6 py-4 bg-gray-100 border-t border-gray-200 flex justify-end rounded-b-md">
 				<Link
 					className="text-sm font-medium text-blue-500 hover:text-blue-400 transition duration-150 ease-in-out"
-					href={
-						isAdmin
-							? `/admin/answer/${question.id}`
-							: `/questions/${question.id}`
-					}
+					href={`/questions/${question.id}`}
 				>
 					{isAdmin ? "回答する" : "詳細へ"} &rarr;
 				</Link>
