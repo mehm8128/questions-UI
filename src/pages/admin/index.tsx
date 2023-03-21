@@ -2,7 +2,8 @@ import axios from "axios"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
-import { Question } from "@/pages"
+import { QuestionType } from "@/pages"
+import Navbar from "@/components/Navbar"
 
 export default function Admin() {
 	const router = useRouter()
@@ -10,7 +11,7 @@ export default function Admin() {
 	const currentPage = !Number.isNaN(Number(router.query.page))
 		? Number(router.query.page)
 		: 1
-	const [questions, setQuestions] = useState<Question[]>([])
+	const [questions, setQuestions] = useState<QuestionType[]>([])
 	const [questionCount, setQuestionCount] = useState(0)
 
 	useEffect(() => {
@@ -31,7 +32,6 @@ export default function Admin() {
 	return (
 		<div className="max-w-screen-lg mx-auto px-4 py-8 sm:px-6 lg:px-8">
 			<h1 className="text-3xl font-bold text-center mb-8">Questions Admin</h1>
-
 			<section className="mb-12">
 				<h2 className="text-2xl font-semibold mb-2">最近の質問</h2>
 				<ul className="space-y-8">
@@ -79,27 +79,11 @@ export default function Admin() {
 				</ul>
 			</section>
 
-			<div className="flex items-center justify-between mt-4 pb-12">
-				<Link
-					href={`/admin?page=${currentPage - 1}`}
-					className={`bg-blue-500 text-white px-8 py-2 rounded-2xl ${
-						currentPage === 1 && "invisible"
-					}`}
-				>
-					前へ
-				</Link>
-				<p className="text-lg">{currentPage}</p>
-				{
-					<Link
-						href={`/admin?page=${currentPage + 1}`}
-						className={`bg-blue-500 text-white px-8 py-2 rounded-2xl ${
-							currentPage === Math.ceil(questionCount / 10) && "invisible"
-						}`}
-					>
-						次へ
-					</Link>
-				}
-			</div>
+			<Navbar
+				questionCount={questionCount}
+				currentPage={currentPage}
+				constructLink={(page) => `/admin?page=${page}`}
+			/>
 		</div>
 	)
 }

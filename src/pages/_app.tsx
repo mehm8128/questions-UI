@@ -11,20 +11,20 @@ export default function App({ Component, pageProps }: AppProps) {
 	const router = useRouter()
 	const path = router.pathname
 
-	useEffect(() => {
-		if (path.startsWith("/admin")) {
-			;(async () => {
-				try {
-					await axios.get(`https://ikura-hamu.trap.show/questions/api/me`, {
-						withCredentials: true,
-					})
-				} catch {
-					document.location =
-						"https://ikura-hamu.trap.show/questions/api/oauth2/authorize"
-				}
-			})()
-		}
-	}, [path])
+	// useEffect(() => {
+	// 	if (path.startsWith("/admin")) {
+	// 		;(async () => {
+	// 			try {
+	// 				await axios.get(`https://ikura-hamu.trap.show/questions/api/me`, {
+	// 					withCredentials: true,
+	// 				})
+	// 			} catch {
+	// 				document.location =
+	// 					"https://ikura-hamu.trap.show/questions/api/oauth2/authorize"
+	// 			}
+	// 		})()
+	// 	}
+	// }, [path])
 
 	return (
 		<div className="text-dark-200 bg-[#f7fafc] min-h-screen">

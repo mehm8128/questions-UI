@@ -1,14 +1,32 @@
 import axios from "axios"
-import Link from "next/link"
-import { useEffect, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
 import { useRouter } from "next/router"
-import { Question as QuestionType } from "@/pages"
+import { QuestionType } from "@/pages"
+import Textarea from "@/components/Textarea"
 
 export default function Question() {
 	const router = useRouter()
 	const questionId = router.query.id as string
 
 	const [question, setQuestion] = useState<QuestionType>()
+	const [answerText, setAnswerText] = useState("")
+	const [isSending, setIsSending] = useState(false)
+
+	const handleSubmitAnswer = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		setIsSending(true)
+		await axios.post(
+			`https://ikura-hamu.trap.show/questions/api/admin/question/${questionId}/answer`,
+			{
+				answer: answerText,
+			},
+			{
+				withCredentials: true,
+			}
+		)
+		setIsSending(false)
+		alert("回答が送信されました！")
+	}
 
 	useEffect(() => {
 		;(async () => {
@@ -44,15 +62,30 @@ export default function Question() {
 				)}
 			</section>
 
-			<div className="text-right">
-				{/** traPerのみ表示 */}
-				<Link
-					href={`/admin/answer/${question?.id}`}
-					className="text-blue-500 hover:text-blue-700 text-lg font-medium"
-				>
-					{question?.answer ? "回答を修正する" : "回答する"} &gt;
-				</Link>
-			</div>
+			{/* traPerのみ表示 */}
+			<section className="mt-8">
+				<h3 className="mb-2 text-2xl">
+					{question?.answer ? "回答を修正する" : "回答する"}
+				</h3>
+				<form onSubmit={handleSubmitAnswer}>
+					<Textarea
+						value={answerText}
+						onChange={(e) => setAnswerText(e.target.value)}
+						placeholder="例：部員は400人くらいいます！初心者も大歓迎です。"
+					/>
+					<div className="text-right mt-4">
+						<button
+							type="submit"
+							disabled={isSending}
+							className={`inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-blue-500 hover:bg-blue-400 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out ${
+								isSending ? "opacity-50" : "opacity-100"
+							}`}
+						>
+							{isSending ? "送信中" : "回答を投稿"}
+						</button>
+					</div>
+				</form>
+			</section>
 		</div>
 	)
 }

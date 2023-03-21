@@ -1,9 +1,11 @@
 import axios from "axios"
-import Link from "next/link"
 import { FormEvent, useEffect, useState } from "react"
 import { useRouter } from "next/router"
+import Textearea from "@/components/Textarea"
+import Question from "@/components/Question"
+import Navbar from "@/components/Navbar"
 
-export interface Question {
+export interface QuestionType {
 	id: string
 	question: string
 	answer: string
@@ -18,7 +20,16 @@ export default function Home() {
 	const currentPage = !Number.isNaN(Number(router.query.page))
 		? Number(router.query.page)
 		: 1
-	const [questions, setQuestions] = useState<Question[]>([])
+	const [questions, setQuestions] = useState<QuestionType[]>([
+		{
+			id: "aaa",
+			question: "aaa",
+			answer: "aaa",
+			answerer: "aaa",
+			created_at: "aaa",
+			updated_at: "aaa",
+		},
+	])
 	const [questionCount, setQuestionCount] = useState(0)
 	const [questionText, setQuestionText] = useState("")
 	const [isSending, setIsSending] = useState(false)
@@ -54,15 +65,11 @@ export default function Home() {
 				</h2>
 				<p className="text-gray-600">説明説明説明</p>
 				<form onSubmit={handleSubmitQuestion} className="mt-6 space-y-4">
-					<div className="rounded-md shadow-sm">
-						<textarea
-							className="block w-full p-1 min-h-32 transition duration-150 ease-in-out sm:text-sm sm:leading-5 border-gray-300 rounded-md"
-							value={questionText}
-							onChange={(e) => setQuestionText(e.target.value)}
-							placeholder="例：部員は何人くらいいますか？、初心者でも大丈夫ですか？"
-							required
-						/>
-					</div>
+					<Textearea
+						value={questionText}
+						onChange={(e) => setQuestionText(e.target.value)}
+						placeholder="例：部員は何人くらいいますか？、初心者でも大丈夫ですか？"
+					/>
 					<div className="text-right">
 						<button
 							type="submit"
@@ -81,68 +88,16 @@ export default function Home() {
 				<h2 className="text-2xl font-semibold mb-2">最近の質問</h2>
 				<ul className="space-y-8">
 					{questions.map((question) => (
-						<li
-							key={question.id}
-							className="rounded-md shadow-sm border border-gray-200"
-						>
-							<div className="p-6">
-								<p className="text-gray-800 leading-tight">
-									{question.question}
-								</p>
-								{question.answer && (
-									<details className="mt-2">
-										<summary className="font-medium text-gray-600 cursor-pointer">
-											回答を表示
-										</summary>
-										<p className="mt-2 text-gray-700 leading-tight">
-											{question.answer}
-										</p>
-										<p className="mt-2 text-right text-sm text-gray-500">
-											回答者：
-											<a
-												href={`https://trap.jp/author/${question.answerer}/`}
-												className="underline"
-												target="_blank"
-												rel="noopener noreferrer"
-											>
-												{question.answerer}
-											</a>
-										</p>
-									</details>
-								)}
-							</div>
-							<div className="px-6 py-4 bg-gray-100 border-t border-gray-200 flex justify-end rounded-b-md">
-								<Link
-									className="text-sm font-medium text-blue-500 hover:text-blue-400 transition duration-150 ease-in-out"
-									href={`/questions/${question.id}`}
-								>
-									詳細へ &rarr;
-								</Link>
-							</div>
-						</li>
+						<Question key={question.id} question={question} isAdmin={false} />
 					))}
 				</ul>
 			</section>
 
-			<div className="flex items-center justify-between mt-4 pb-12">
-				<Link
-					href={`/?page=${currentPage - 1}`}
-					className={`bg-blue-500 text-white px-8 py-2 rounded-2xl ${
-						currentPage === 1 && "invisible"
-					}`}
-				>
-					前へ
-				</Link>
-				<p className="text-lg">{currentPage}</p>
-				<Link
-					href={`/?page=${currentPage + 1}`}
-					className={`bg-blue-500 text-white px-8 py-2 rounded-2xl ${
-						currentPage === Math.ceil(questionCount / 10) && "invisible"
-					}`}
-				>
-					次へ
-				</Link>
-			</div>
+			<Navbar
+				currentPage={currentPage}
+				questionCount={questionCount}
+				constructLink={(page) => `/?page=${page}`}
+			/>
 		</div>
 	)
 }
