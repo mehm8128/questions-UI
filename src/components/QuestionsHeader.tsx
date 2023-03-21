@@ -12,7 +12,7 @@ export default function QuestionsHeader() {
 				<Link href="/">Questions</Link>
 			</h1>
 			{user?.name && (
-				<Image
+				<img
 					src={`https://q.trap.jp/api/v3/public/icon/${user.name}`}
 					className="rounded-full"
 					alt={user.name}
