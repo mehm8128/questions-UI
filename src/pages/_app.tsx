@@ -5,20 +5,34 @@ import "windi.css"
 import QuestionsHeader from "@/components/QuestionsHeader"
 import { useRouter } from "next/router"
 import axios from "axios"
-import { useEffect } from "react"
+import { createContext, useEffect, useState } from "react"
 import Head from "next/head"
+
+export interface User {
+	id: string
+	name: string
+	displayName: string
+}
+
+export const UserContext = createContext<User | null>(null)
 
 export default function App({ Component, pageProps }: AppProps) {
 	const router = useRouter()
 	const path = router.pathname
 
+	const [user, setUser] = useState<User | null>(null)
+
 	useEffect(() => {
 		if (path.startsWith("/admin")) {
 			;(async () => {
 				try {
-					await axios.get(`https://ikura-hamu.trap.show/questions/api/me`, {
-						withCredentials: true,
-					})
+					const res = await axios.get(
+						`https://ikura-hamu.trap.show/questions/api/me`,
+						{
+							withCredentials: true,
+						}
+					)
+					setUser(res.data)
 				} catch {
 					document.location =
 						"https://ikura-hamu.trap.show/questions/api/oauth2/authorize"
@@ -32,10 +46,13 @@ export default function App({ Component, pageProps }: AppProps) {
 			<Head>
 				<title>Questions</title>
 			</Head>
-			<QuestionsHeader />
-			<main>
-				<Component {...pageProps} />
-			</main>
+
+			<UserContext.Provider value={user}>
+				<QuestionsHeader />
+				<main>
+					<Component {...pageProps} />
+				</main>
+			</UserContext.Provider>
 		</div>
 	)
 }

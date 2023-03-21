@@ -1,10 +1,11 @@
 import axios from "axios"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { QuestionType } from "@/pages"
 import Navbar from "@/components/Navbar"
 import Question from "@/components/Question"
+import { UserContext } from "@/pages/_app"
 
 export default function Admin() {
 	const router = useRouter()
@@ -12,8 +13,11 @@ export default function Admin() {
 	const currentPage = !Number.isNaN(Number(router.query.page))
 		? Number(router.query.page)
 		: 1
+
 	const [questions, setQuestions] = useState<QuestionType[]>([])
 	const [questionCount, setQuestionCount] = useState(0)
+
+	const user = useContext(UserContext)
 
 	useEffect(() => {
 		;(async () => {
@@ -29,6 +33,10 @@ export default function Admin() {
 			setQuestionCount(res.data.count)
 		})()
 	}, [])
+
+	if (!user?.id) {
+		return <div>権限がありません</div>
+	}
 
 	return (
 		<div className="max-w-screen-lg mx-auto px-4 py-8 sm:px-6 lg:px-8">
