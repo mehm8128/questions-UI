@@ -75,23 +75,25 @@ export default function Admin() {
 			</section>
 
 			<div className="flex items-center justify-between mt-4 pb-12">
-				{currentPage !== 1 && (
-					<Link
-						href={`/?page=${currentPage - 1}`}
-						className="bg-blue-500 text-white px-8 py-2 rounded-2xl"
-					>
-						前へ
-					</Link>
-				)}
+				<Link
+					href={`/admin?page=${currentPage - 1}`}
+					className={`bg-blue-500 text-white px-8 py-2 rounded-2xl ${
+						currentPage !== 1 && "hidden"
+					}`}
+				>
+					前へ
+				</Link>
 				<p className="text-lg">{currentPage}</p>
-				{currentPage !== Math.ceil(questionCount / 10) && (
+				{
 					<Link
-						href={`/?page=${currentPage + 1}`}
-						className="bg-blue-500 text-white px-8 py-2 rounded-2xl"
+						href={`/admin?page=${currentPage + 1}`}
+						className={`bg-blue-500 text-white px-8 py-2 rounded-2xl ${
+							currentPage !== Math.ceil(questionCount / 10) && "hidden"
+						}`}
 					>
 						次へ
 					</Link>
-				)}
+				}
 			</div>
 		</div>
 	)
