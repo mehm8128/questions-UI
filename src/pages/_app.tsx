@@ -23,22 +23,15 @@ export default function App({ Component, pageProps }: AppProps) {
 	const [user, setUser] = useState<User | null>(null)
 
 	useEffect(() => {
-		if (path.startsWith("/admin")) {
-			;(async () => {
-				try {
-					const res = await axios.get(
-						`https://ikura-hamu.trap.show/questions/api/me`,
-						{
-							withCredentials: true,
-						}
-					)
-					setUser(res.data)
-				} catch {
-					document.location =
-						"https://ikura-hamu.trap.show/questions/api/oauth2/authorize"
+		;(async () => {
+			const res = await axios.get(
+				`https://ikura-hamu.trap.show/questions/api/me`,
+				{
+					withCredentials: true,
 				}
-			})()
-		}
+			)
+			setUser(res.data)
+		})()
 	}, [path])
 
 	return (
