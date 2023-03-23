@@ -11,7 +11,13 @@ export default function QuestionsHeader() {
 			<h1 className="text-xl">
 				<Link href="/">Questions</Link>
 			</h1>
-			{!user?.id && (
+			{user?.id ? (
+				<Link href="/admin">
+					<button className="border border-blue-500 text-blue-500 px-6 py-1 rounded-2xl">
+						Adminページへ
+					</button>
+				</Link>
+			) : (
 				<a href="https://ikura-hamu.trap.show/questions/api/oauth2/authorize">
 					<button className="border border-blue-500 text-blue-500 px-6 py-1 rounded-2xl">
 						Adminになる(traP部員のみ)
@@ -19,9 +25,11 @@ export default function QuestionsHeader() {
 				</a>
 			)}
 			{user?.name && (
-				<img
+				<Image
 					src={`https://q.trap.jp/api/v3/public/icon/${user.name}`}
-					className="rounded-full h-8 w-8"
+					className="rounded-full"
+					width={32}
+					height={32}
 					alt={user.name}
 				/>
 			)}
