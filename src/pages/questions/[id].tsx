@@ -32,13 +32,14 @@ export default function Question() {
 	}
 
 	useEffect(() => {
+		if (!router.isReady) return
 		;(async () => {
 			const res = await axios.get(
 				`https://ikura-hamu.trap.show/questions/api/question/${questionId}`
 			)
 			setQuestion(res.data)
 		})()
-	}, [])
+	}, [router.isReady])
 
 	return (
 		<div className="pt-12 mx-auto max-w-screen-md">
