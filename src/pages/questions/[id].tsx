@@ -42,7 +42,7 @@ export default function Question() {
 	}, [router.isReady])
 
 	return (
-		<div className="pt-12 mx-auto max-w-screen-md">
+		<div className="max-w-screen-lg mx-auto px-4 py-8 sm:px-6 lg:px-8">
 			<h2 className="text-4xl text-center mb-8 font-bold">質問の詳細</h2>
 			<section className="mb-8">
 				<h3 className="mb-4 text-2xl font-bold">質問文</h3>
