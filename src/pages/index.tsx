@@ -54,7 +54,13 @@ export default function Home() {
 				<h2 className="text-2xl font-semibold mb-2">
 					traPに質問してみましょう！
 				</h2>
-				<p className="text-gray-600">説明説明説明</p>
+				<p className="text-gray-600">
+					この質問箱はtraPのメンバーによって作られた
+					<span className="font-extrabold">非公式</span>
+					質問箱です。traPの意見を代表するものではないのでご了承ください。
+					<br />
+					traPに関することや大学に関することなど、自由に質問してください。traP部員が自由に回答します。
+				</p>
 				<form onSubmit={handleSubmitQuestion} className="mt-6 space-y-4">
 					<Textearea
 						value={questionText}

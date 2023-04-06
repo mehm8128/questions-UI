@@ -5,7 +5,7 @@ export default function Complete() {
 	return (
 		<div className="bg-light-50 pt-12 mt-12 mx-auto w-1/2 flex flex-col items-center rounded-md shadow-lg">
 			<h2 className="text-4xl text-center mb-8 font-bold text-gray-800">
-				質問が送信されました！
+				質問が送信されました！traP部員からの回答をお待ちください。
 			</h2>
 			<div className="flex justify-center items-center rounded-full bg-green-100 h-20 w-20 mb-4">
 				<TadaIcon />

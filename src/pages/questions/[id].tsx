@@ -71,6 +71,12 @@ export default function Question() {
 					<h3 className="mb-2 text-2xl">
 						{question?.answer ? "回答を修正する" : "回答する"}
 					</h3>
+					<p className="mb-2 font-bold">
+						注意:
+						外部の人が見るものです。非公式とはいえ、回答のしかたや文章には注意しましょう。
+						<br />
+						また、回答には回答者のtraP IDが表示されることにも注意してください。
+					</p>
 					<form onSubmit={handleSubmitAnswer}>
 						<Textarea
 							value={answerText}
