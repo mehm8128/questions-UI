@@ -45,7 +45,7 @@ export default function Home() {
 			setQuestions(res.data.questions)
 			setQuestionCount(res.data.count)
 		})()
-	}, [])
+	}, [currentPage])
 
 	return (
 		<div className="max-w-screen-lg mx-auto px-4 py-8 sm:px-6 lg:px-8">

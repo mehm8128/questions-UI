@@ -32,7 +32,7 @@ export default function Admin() {
 			setQuestions(res.data.questions)
 			setQuestionCount(res.data.count)
 		})()
-	}, [])
+	}, [currentPage])
 
 	if (!user?.id) {
 		return <div>権限がありません</div>
