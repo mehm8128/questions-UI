@@ -23,7 +23,7 @@ export default function Admin() {
 		;(async () => {
 			const res = await axios.get(
 				`https://ikura-hamu.trap.show/questions/api/admin/question?offset=${
-					currentPage - 1
+					(currentPage - 1) * 10
 				}&limit=10`,
 				{
 					withCredentials: true,

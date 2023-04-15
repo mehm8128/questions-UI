@@ -39,7 +39,7 @@ export default function Home() {
 		;(async () => {
 			const res = await axios.get(
 				`https://ikura-hamu.trap.show/questions/api/question?offset=${
-					currentPage - 1
+					(currentPage - 1) * 10
 				}&limit=10`
 			)
 			setQuestions(res.data.questions)
